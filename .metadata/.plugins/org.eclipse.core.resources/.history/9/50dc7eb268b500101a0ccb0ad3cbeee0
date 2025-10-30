@@ -1,0 +1,19 @@
+package com.kh.start.member.model.service;
+
+import org.springframework.stereotype.Service;
+
+import com.kh.start.member.model.dto.MemberDTO;
+@Service
+public class MemberServiceImpl implements MemberService {
+//implements는 부모인 memberservice의 signup은 사용해야한다 하고 안에 구현은 마음대로 해도됨
+	@Override
+	public void signUp(MemberDTO member) {
+		//유효성검사
+		//비밀번호 암호화
+		//ROLE주기
+		//아이디 중복 검사
+		//매퍼호출
+		
+	}
+
+}

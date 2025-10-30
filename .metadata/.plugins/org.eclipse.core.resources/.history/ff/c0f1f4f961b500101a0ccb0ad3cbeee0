@@ -1,0 +1,12 @@
+package com.kh.start.member.model.service;
+
+import com.kh.start.member.model.dto.MemberDTO;
+
+public class MemberServiceImpl implements MemberService {
+//implements는 부모인 memberservice의 signup은 사용해야한다 하고 안에 구현은 마음대로 해도됨
+	@Override
+	public void signUp(MemberDTO member) {
+		
+	}
+
+}

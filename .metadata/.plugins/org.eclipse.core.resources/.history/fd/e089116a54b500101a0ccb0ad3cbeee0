@@ -1,0 +1,16 @@
+package com.kh.start.member.model.dto;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public class MemberDTO {
+	private String memberId;
+	private String memberPwd;
+	private String memberName;
+	private String role;
+
+}

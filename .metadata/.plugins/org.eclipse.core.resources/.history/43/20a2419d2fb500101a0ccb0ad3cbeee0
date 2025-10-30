@@ -1,0 +1,64 @@
+package com.example.demo.model.service;
+
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+
+import org.springframework.web.client.RestTemplate;
+
+public class ApiService {
+
+	
+public String requestBusan(int pageNo) {
+	private Comment comment;
+    	
+    	final String SERVICE_KEY = "?serviceKey=9d2a4d577b6a7f2853e7a2bb3135bb16055c574f02adc37f47c10cc6b93875a9"; 
+    	
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("https://apis.data.go.kr/6260000/FoodService/getFoodKr");
+    	sb.append(SERVICE_KEY);
+    	sb.append("&pageNo="+pageNo);
+    	sb.append("&numOfRows=6");
+    	sb.append("&resultType=json");
+    	
+    	URI uri = null;
+
+    	try {
+			uri = new URI(sb.toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+    	String apiResponse = new RestTemplate().getForObject(uri, String.class);
+    	
+    	return apiResponse;
+    }
+    
+    public String requestBusanDetail(int num) {
+    	
+    	final String SERVICE_KEY = "?serviceKey=9d2a4d577b6a7f2853e7a2bb3135bb16055c574f02adc37f47c10cc6b93875a9"; 
+    	
+    	StringBuilder sb = new StringBuilder();
+    	sb.append("https://apis.data.go.kr/6260000/FoodService/getFoodKr");
+    	sb.append(SERVICE_KEY);
+    	sb.append("&pageNo=1");
+    	sb.append("&numOfRows=6");
+    	sb.append("&resultType=json");
+    	sb.append("&UC_SEQ="+num);
+    	URI uri = null;
+
+    	try {
+			uri = new URI(sb.toString());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+    	String apiResponse = new RestTemplate().getForObject(uri, String.class);
+    	
+    	return apiResponse;
+    }
+    public int saveComment(CommentDTO comment) {
+    	return mapper.saveComment(comment);
+    }
+    public List<CommentDTO> selectAll(Long seq){
+    	return mapper.selectAll(seq);
+    }
+}

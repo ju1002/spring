@@ -1,0 +1,8 @@
+package com.kh.start.member.model.service;
+
+public interface MemberServiceImpl implements MemberService {
+	public void signUp() {
+		
+	}
+
+}

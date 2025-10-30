@@ -1,0 +1,10 @@
+package com.example.demo.api.controller;
+
+@Slf4j
+@CrossOrigin("*")
+@RequestMapping("api")
+@RequiredArgsConstructor
+@RestController
+public class ApiController {
+	private final ApiService apiService;
+}

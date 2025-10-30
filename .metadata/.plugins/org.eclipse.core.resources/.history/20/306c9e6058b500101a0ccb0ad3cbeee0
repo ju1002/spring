@@ -1,0 +1,9 @@
+package com.kh.start.member.model.service;
+
+public interface MemberServiceImpl extends MemberService {
+	@Override
+	public void signUp() {
+		
+	}
+
+}

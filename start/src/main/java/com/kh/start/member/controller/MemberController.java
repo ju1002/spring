@@ -1,0 +1,46 @@
+package com.kh.start.member.controller;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.kh.start.member.model.dto.MemberDTO;
+import com.kh.start.member.model.service.MemberService;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+//여기서는 응답하고 요청만 함
+@RestController
+@Slf4j
+@RequestMapping("members") //locallhost/members
+@RequiredArgsConstructor //final필드들로 자동으로 매개변수 생성자 만들어 준다.
+
+public class MemberController {
+	private final MemberService memberService;
+	private final BCryptPasswordEncoder passwordEncoder;
+//	@Autowired  : 밑에 나오는 것을 spring에서 자동으로 가져다 달라는 거임 
+//	public MemberController(MemberService memberService) {
+//		this.memberService= memberService;
+//	}
+	//VO: valueObject(값을 담는 역할) => 불변해야한다는 것이 특징
+	//회원가입=> 일반회원 => ROLE컬럼에 들어갈 값 필드에 담아주어야함
+	//=>비밀번호 암호화=> VO에 담을 것
+	//DTO: DataTransferObject (데이터 전송) 
+	//GET,POST,POST,PUT,DELETE
+	//로그인은  여기다가 안만들것
+	
+@PostMapping
+public ResponseEntity<?> signUp(@Valid @RequestBody MemberDTO member){
+	log.info("멤버 잘 들어옴? {}",member);
+	//@RequestBody는 클라이언트가 보낸 JSON(객체형태로 보낸 데이터)을 자바객체로 변환해주는 애노테이션임
+	//@RequestParam은 url로 보낸 요청 즉 주소에 붙은 데이터를 가져오는것임
+	memberService.signUp(member);
+	return ResponseEntity.status(201).build();
+	
+}
+	
+}

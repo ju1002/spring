@@ -1,0 +1,38 @@
+package com.kh.start.member.model.service;
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.kh.start.exception.IdDuplicateException;
+import com.kh.start.member.model.VO.MemberVO;
+import com.kh.start.member.model.dao.MemberMapper;
+import com.kh.start.member.model.dto.MemberDTO;
+
+import lombok.RequiredArgsConstructor;
+@Service
+@RequiredArgsConstructor
+public class MemberServiceImpl implements MemberService {
+//implements는 부모인 memberservice의 signup은 사용해야한다 하고 안에 구현은 마음대로 해도됨
+	private final MemberMapper memberMapper;
+	private final PasswordEncoder passwordEncoder;
+	@Override
+	public void signUp(MemberDTO member) {
+		//유효성검사
+		//비밀번호 암호화
+		//ROLE주기
+		//아이디 중복 검사
+		//매퍼호출
+		int count = memberMapper.countByMemberId(member.getMemberId());
+		if(1 == count) {
+			throw new IdDuplicateException("이미 존재하는 아이디 입니다.");
+			
+		}
+		String encodePwd =passwordEncoder.encode(member.getMemberPwd());
+		
+	}
+	MemberVO signUpMember = new MemberVO(member.getMemberId()
+										, encodePwd
+										, member.getMemberName()
+										, "ROLE_USER");
+
+}

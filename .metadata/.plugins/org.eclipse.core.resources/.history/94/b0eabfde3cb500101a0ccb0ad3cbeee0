@@ -1,0 +1,22 @@
+package com.example.demo;
+
+public class StudyController {
+
+	
+	
+	
+	/*
+	 * SpringStarter
+	 * 
+	 * 특정 기능에 필요한 의존성 라이브러리들을 한 번에 관리 할 수있는 개념
+	 * 
+	 * 각각의 Stater는 관련된 라이브러리들의 집합으로 모든 의존성을 하나의 Stater로 관리하고
+	 * 예)
+	 * spring-boot-start-web : 웹 애플리케이션 개발에 필요한 의존성들이 모여있음
+	 * (Servlet,DispatcherSErvlet, MVC,Jackson등)
+	 * spring-boot-starter-security : 스프링 시큐리티(보안) 관련된 의존성들이 모여있음
+	 * 
+	 * 
+	 * 
+	 */
+}

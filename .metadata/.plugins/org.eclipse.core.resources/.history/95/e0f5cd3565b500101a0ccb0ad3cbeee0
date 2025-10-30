@@ -1,0 +1,17 @@
+package com.kh.start.exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@RestControllerAdvice //모든 컨트롤러에서 발생하는 예외처리를 여기서 하겠다임
+public class GlobalExceptionHandler {
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<?> handlerArgumentsNotValid(MethodArgumentsNotValidException e){
+		
+	}
+}
