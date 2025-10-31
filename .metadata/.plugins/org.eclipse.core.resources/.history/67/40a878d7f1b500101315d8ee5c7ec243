@@ -1,0 +1,14 @@
+package com.kh.start.auth.model.service;
+
+import com.kh.start.member.model.dto.MemberDTO;
+import com.kh.start.member.model.service.MemberService;
+
+public class AuthServiceImpl implements MemberService {
+
+	@Override
+	public void signUp(MemberDTO member) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,0 +1,55 @@
+package com.kh.start.token.util;
+
+import java.util.Base64;
+import java.util.Date;
+
+import javax.crypto.SecretKey;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.security.Keys;
+import jakarta.annotation.PostConstruct;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Component //빈에 등록하는거
+//토큰에 들어갈 서명은 비밀로 지켜져야 하기때문에 yml파일에 넣어놓는ㄷ.
+public class JwtUtil {
+	//토큰을 만들어내는 기능들을 가지고 있을 클래스
+	//애플리케이션 설정파일에 정의된 속성의 값들을 클래스 내부에서 불러서 사용하고 싶다.
+	@Value("${jwt.secret}")
+	
+	private String secretKey;
+	private SecretKey key; //이걸로 jwt서명을 만들어 줌
+	
+	@PostConstruct //빈에 등록하고 의존성 주입 하고 그 다음에 이 메소드를 실행 하겠다.
+	public void init() {
+		//log.info("{}",secretKey);
+		byte[] arr = Base64.getDecoder().decode(secretKey);
+		//위 바이트형 배열을 가지고 SecretKey타입의 key를 만들거임
+		this.key = Keys.hmacShaKeyFor(arr);
+		//hmacShaKeyFor()키를 생성 하는 함수다
+	}
+	public String getAccessToken(String username) {
+		
+		return Jwts.builder()
+					.subject(username) //사용자 아이디
+					.issuedAt(new Date()) //발급일 
+					.expiration(new Date(System.currentTimeMillis()+(1000*60*60*24))) //만료일 하루
+					.signWith(key) //서명
+					.compact();
+		
+	}
+	public String getRefreshToken(String username) {
+		return Jwts.builder()
+					.subject(username)
+					.issuedAt(new Date())
+					.expiration(new Date(System.currentTimeMillis()+(1000*60*60*24*3)))
+					.signWith(key)
+					.compact();
+	}
+	
+	
+}

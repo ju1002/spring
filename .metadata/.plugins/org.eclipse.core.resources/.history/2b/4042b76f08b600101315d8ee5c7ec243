@@ -1,0 +1,41 @@
+package com.kh.start.auth.model.service;
+
+import java.util.Map;
+
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.stereotype.Service;
+
+import com.kh.start.member.model.dto.MemberDTO;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+
+
+
+@Service
+@Slf4j
+@RequiredArgsConstructor
+public class AuthServiceImpl implements AuthService {
+	public final AuthenticationManager authenticationManger;
+	
+	
+	@Override
+	public Map<String, String> login(MemberDTO member) {
+	//MemberDTO라는 객체로 사용자 정보(아이디, 비밀번호 등)를 받아서,
+	//로그인 처리 후 결과를 Map<String, String>으로 반환하는 구조입니다.
+	//로그인 구현 
+	/*1.유효성 검증 (아이디/비밀번호 값이 들어왔는가, 영어 숫자인가,글자수가 괜찮은가)
+	 * 2.아이디가 BOOT_MEMBER테이블에 MEMBER_ID컬럼에 존재하는 아이디 인가
+	 * 3. 조회를 해온 비밀번호 컬럼의 값이 암호문이 사용자가 입력한 평문으로 만들어진것이 맞는가
+	 * 사용자 인증 성공~~
+	 * 
+	 * 사용자 인증
+	 */
+	//토큰은  사용자가 뭐 로그인이면 로그인 됐다는 증명서 같은 것이다.
+		Authentication auth =   authenticationManger.authenticate(new UsernamePasswordAuthenticationToken(member.getMemberId(),member.getMemberPwd()));
+		return null;
+	}
+
+}

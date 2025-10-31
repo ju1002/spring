@@ -1,0 +1,13 @@
+package com.kh.start.auth.model.service;
+
+import java.util.Map;
+
+public interface AuthService {
+
+	Map<String,String> login(MemberDTO member);
+	
+	
+	
+	
+	
+}

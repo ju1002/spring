@@ -1,0 +1,12 @@
+package com.kh.start.token.model.vo;
+
+import lombok.Builder;
+import lombok.Value;
+
+@Value //get,set,tostring,만들어줌
+@Builder
+public class RefreshToken {
+	private String token;
+	private String username;
+	private Long expiration;
+}

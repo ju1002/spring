@@ -1,0 +1,14 @@
+package com.kh.start.auth.model.vo;
+
+import java.util.Collection;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+public class CustomUseDetails implements UserDetails {
+
+	private String username;
+	private String password;
+	private String memberName;
+	private Collection<? extends GranteAuthority> authorities;
+}

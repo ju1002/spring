@@ -1,0 +1,12 @@
+package com.kh.start.token.model.dao;
+
+import org.apache.ibatis.annotations.Mapper;
+
+@Mapper
+
+public interface TokenMapper {
+	@Insert ("INSERT INTO BOOT_TOKEN VALUES (#{token},#{memberId},#{expiration}")
+	int saveToken(RefreshToken token);
+	
+
+}

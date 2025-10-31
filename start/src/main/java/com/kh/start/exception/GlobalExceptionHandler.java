@@ -1,11 +1,10 @@
 package com.kh.start.exception;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -15,6 +14,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice //모든 컨트롤러에서 발생하는 예외처리를 여기서 하겠다임
 public class GlobalExceptionHandler {
+	private ResponseEntity<Map<String,String>> createResponseEntity(RuntimeException e,HttpStatus status){
+		Map<String,String> error = new HashMap();
+		error.put("error-message", e.getMessage());
+		return ResponseEntity.status(status).body(error);
+	}
+	@ExceptionHandler(CustomAuthenticationException.class)
+	public ResponseEntity<Map<String,String>> handleAuth(CustomAuthenticationException e,HttpStatus status){
+		return createResponseEntity(e,HttpStatus.UNAUTHORIZED);
+	}
 	
 	@ExceptionHandler(IdDuplicateException.class)
 	public ResponseEntity<?> handlerDuplicateId(IdDuplicateException e){
@@ -38,4 +46,11 @@ public class GlobalExceptionHandler {
 		log.info("{}", errors);
 		return ResponseEntity.badRequest().body(errors);
 	}
+	@ExceptionHandler(UsernameNotFoundException.class)
+	public ResponseEntity<?> handlerUsernameNotFound(UsernameNotFoundException e){
+		Map<String ,String > error =new HashMap();
+		error.put("error-message", e.getMessage());
+		return ResponseEntity.badRequest().body(error);
+	}
+	
 }

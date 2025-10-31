@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
-    <typeInfo handle="=start/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.kh.start.member.model.service{MemberService.java[MemberService" modifiers="513" timestamp="1761805879770"/>
     <typeInfo handle="=start/C:\/Program Files\/Amazon Corretto\/jdk21.0.8_9\/lib\/jrt-fs.jar`java.base=/javadoc_location=/https:\/\/docs.oracle.com\/en\/java\/javase\/20\/docs\/api\/=/&lt;java.lang(RuntimeException.class[RuntimeException" modifiers="33" timestamp="1752058254000"/>
+    <typeInfo handle="=start/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.kh.start.member.model.service{MemberService.java[MemberService" modifiers="513" timestamp="1761805879770"/>
+    <typeInfo handle="=start/C:\/Users\/user1\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework.security\/spring-security-core\/6.5.6\/a1bc1afabfab5cbee9179c134f41d10b4351a001\/spring-security-core-6.5.6.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.security.core.userdetails(UserDetailsService.class[UserDetailsService" modifiers="1537" timestamp="1761795771622"/>
+    <typeInfo handle="=start/C:\/Users\/user1\/.gradle\/caches\/modules-2\/files-2.1\/org.springframework.security\/spring-security-core\/6.5.6\/a1bc1afabfab5cbee9179c134f41d10b4351a001\/spring-security-core-6.5.6.jar=/gradle_used_by_scope=/main,test=/&lt;org.springframework.security.core.userdetails(UserDetails.class[UserDetails" modifiers="1537" timestamp="1761795771622"/>
+    <typeInfo handle="=start/src\/main\/java=/gradle_scope=/main=/=/gradle_used_by_scope=/main,test=/&lt;com.kh.start.auth.model.service{AuthService.java[AuthService" modifiers="513" timestamp="1761871025216"/>
 </typeInfoHistroy>

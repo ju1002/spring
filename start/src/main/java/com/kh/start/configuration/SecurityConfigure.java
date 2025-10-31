@@ -2,6 +2,10 @@ package com.kh.start.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,6 +14,7 @@ import org.springframework.security.web.SecurityFilterChain;
 
 //보안 관련 클래스
 @Configuration //스프링 설정을 하는 클래스라고 알려주는것 
+@EnableMethodSecurity
 public class SecurityConfigure {
 //현재의 문제점: 시큐리티의 formLogin필터가 자꾸만 인증이 안됐다고 회원가입도 못하게함
 //해결방법: form로그인 안쓸래 하고 filterChain을 빈으로 등록
@@ -33,8 +38,17 @@ public class SecurityConfigure {
 		//<img src="http://www.naver/com"/>
 		//httpsecurity는 어떤 url에 누가 접근 가능한지 설정하는 것이다.
 		
+		
+		//에를 들어서 회원가입,로그인은 누구나 할 수 있어야 해
+		//회원정보수정 ,회원 탈퇴 => 로그인된 사용자만 할 수 있어야함
+		
 	return httpSecurity.formLogin(AbstractHttpConfigurer::disable)
-						.csrf(AbstractHttpConfigurer::disable).build();
+						.csrf(AbstractHttpConfigurer::disable)
+						.authorizeHttpRequests(requests -> {
+						requests.requestMatchers(HttpMethod.POST,"/auth/login","/members").permitAll();
+						requests.requestMatchers(HttpMethod.PUT,"/members").authenticated();
+						})
+						.build();
 	//::이게 메서드를 참조한다는 뜻임
 	//AbstractHttpConfigurer 이거는 springsecurity의 설정을 갖고있는 추상클래스임
 	//따라서 extends로  formlogin하고 csrf를 상속받아서  disable을 참조해서  disable메서드를 구현한거임
@@ -47,5 +61,16 @@ public class SecurityConfigure {
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
+	}
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) {
+		try { //
+			return authConfig.getAuthenticationManager();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return null;
+		
 	}
 	}

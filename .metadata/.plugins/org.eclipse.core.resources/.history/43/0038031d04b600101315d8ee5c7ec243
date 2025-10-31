@@ -1,0 +1,6 @@
+package com.kh.start.exception;
+
+public class UserNameNotFoundException extends RuntimeExcepiton {
+	
+
+}

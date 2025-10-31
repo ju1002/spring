@@ -1,0 +1,18 @@
+package com.kh.start.token.util;
+
+import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Component //빈에 등록하는거
+
+
+public class JwtUtil {
+	//토큰을 만들어내는 기능들을 가지고 있을 클래스
+	
+	
+	
+	
+	
+}
